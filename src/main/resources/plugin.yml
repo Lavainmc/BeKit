@@ -1,0 +1,9 @@
+name: BeKit
+version: 'alpha-0.1'
+main: me.lavainmc.bekit.main
+api-version: '1.21'
+authors: [ Lavainmc ]
+description: 'A plugin can makes your kit editable'
+commands:
+  bekit:
+    usage: "§bBeKit§7>> §c未知命令! 尝试/bekit help查看指令"

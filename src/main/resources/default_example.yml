@@ -1,0 +1,63 @@
+inventory:
+  '0':
+    ==: org.bukkit.inventory.ItemStack
+    v: 2586
+    type: DIAMOND_SWORD
+  '1':
+    ==: org.bukkit.inventory.ItemStack
+    v: 2586
+    type: DIAMOND_AXE
+  '2':
+    ==: org.bukkit.inventory.ItemStack
+    v: 2586
+    type: CROSSBOW
+  '3':
+    ==: org.bukkit.inventory.ItemStack
+    v: 2586
+    type: BOW
+  '4':
+    ==: org.bukkit.inventory.ItemStack
+    v: 2586
+    type: ARROW
+    amount: 6
+  '36':
+    ==: org.bukkit.inventory.ItemStack
+    v: 2586
+    type: DIAMOND_BOOTS
+  '37':
+    ==: org.bukkit.inventory.ItemStack
+    v: 2586
+    type: DIAMOND_LEGGINGS
+  '38':
+    ==: org.bukkit.inventory.ItemStack
+    v: 2586
+    type: DIAMOND_CHESTPLATE
+  '39':
+    ==: org.bukkit.inventory.ItemStack
+    v: 2586
+    type: DIAMOND_HELMET
+  '40':
+    ==: org.bukkit.inventory.ItemStack
+    v: 2586
+    type: SHIELD
+armor:
+  boots:
+    ==: org.bukkit.inventory.ItemStack
+    v: 2586
+    type: DIAMOND_BOOTS
+  leggings:
+    ==: org.bukkit.inventory.ItemStack
+    v: 2586
+    type: DIAMOND_LEGGINGS
+  chestplate:
+    ==: org.bukkit.inventory.ItemStack
+    v: 2586
+    type: DIAMOND_CHESTPLATE
+  helmet:
+    ==: org.bukkit.inventory.ItemStack
+    v: 2586
+    type: DIAMOND_HELMET
+offhand:
+  ==: org.bukkit.inventory.ItemStack
+  v: 2586
+  type: SHIELD
