@@ -1,7 +1,7 @@
 name: BeKit
 version: 'alpha-0.1'
 main: me.lavainmc.bekit.main
-api-version: '1.21'
+api-version: '1.16'
 authors: [ Lavainmc ]
 description: 'A plugin can makes your kit editable'
 commands:
