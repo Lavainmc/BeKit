@@ -11,26 +11,15 @@ inventory:
     ==: org.bukkit.inventory.ItemStack
     v: 3955
     type: BOW
+  '3':
+    ==: org.bukkit.inventory.ItemStack
+    v: 3955
+    type: CROSSBOW
   '4':
     ==: org.bukkit.inventory.ItemStack
     v: 3955
     type: ARROW
     amount: 6
-  '7':
-    ==: org.bukkit.inventory.ItemStack
-    v: 3955
-    type: CROSSBOW
-    meta:
-      ==: ItemMeta
-      meta-type: CROSSBOW
-      charged-projectiles:
-      - ==: org.bukkit.inventory.ItemStack
-        v: 3955
-        type: ARROW
-  '8':
-    ==: org.bukkit.inventory.ItemStack
-    v: 3955
-    type: DIAMOND_AXE
   '36':
     ==: org.bukkit.inventory.ItemStack
     v: 3955
@@ -48,14 +37,6 @@ inventory:
     v: 3955
     type: DIAMOND_HELMET
   '40':
-    ==: org.bukkit.inventory.ItemStack
-    v: 3955
-    type: SHIELD
-  '3':
-    ==: org.bukkit.inventory.ItemStack
-    v: 3955
-    type: CROSSBOW
-  '5':
     ==: org.bukkit.inventory.ItemStack
     v: 3955
     type: SHIELD
