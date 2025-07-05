@@ -1,4 +1,7 @@
 # BeKit
+
+# Wiki: https://github.com/Lavainmc/BeKit/wiki
+
 (简体中文)
 
 SpigotMC 的可编辑套件插件
