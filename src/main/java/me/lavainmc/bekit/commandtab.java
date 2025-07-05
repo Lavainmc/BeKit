@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class commandtab implements TabCompleter {
+
     @Override
     public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
         List<String> completions = new ArrayList<>();
@@ -22,9 +23,9 @@ public class commandtab implements TabCompleter {
             completions.add("about");
             completions.add("help");
         }
-        // 过滤已输入的字符
         return completions.stream()
                 .filter(s -> s.startsWith(args[args.length - 1]))
                 .collect(Collectors.toList());
+
     }
 }

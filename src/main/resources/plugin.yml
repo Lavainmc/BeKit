@@ -5,5 +5,17 @@ api-version: '1.16'
 authors: [ Lavainmc ]
 description: 'A plugin can makes your kit editable'
 commands:
-  bekit:
+  BeKit:
+    aliases: [bekit, bk]
     usage: "§bBeKit§7>> §c未知命令! 尝试/bekit help查看指令"
+    description: "控制全部命令的使用权限"
+permissions:
+  bekit.savekit:
+    description: 保存套件权限
+    default: true
+  bekit.loadkit:
+    description: 加载套件权限
+    default: true
+  bekit.deletekit:
+    description: 删除套件权限
+    default: true

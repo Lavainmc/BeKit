@@ -6,6 +6,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -27,13 +29,20 @@ public final class main extends JavaPlugin {
         generatefile("readme.txt");
         generatefile("default_example.yml");
         getLogger().info("示例套件已生成");
-        // 插件加载完成info
-        getLogger().info("BeKit Legacy 插件已装载!");
+        // 插件加载info
+        getLogger().info("BeKit 插件已装载!");
         getLogger().info("Plugin made by Lavainmc(Lava不是岩浆) !");
         // 指令注册
         getCommand("bekit").setExecutor(new commandmanager());   // 此处注册commandmanager
         getCommand("bekit").setTabCompleter(new commandtab());   // 此处注册tab命令补全
     }
+
+    @Override
+    public void onDisable() {
+        // 插件卸载info
+        getLogger().info("BeKit 已卸载! see u again!");
+    }
+
     public class commandmanager implements CommandExecutor {
         @Override
         public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -47,19 +56,35 @@ public final class main extends JavaPlugin {
             switch (args[0].toLowerCase()) {
                 case "savekit":
                     // 覆盖并保存套件
+                    if (!player.hasPermission("bekit.savekit")) {
+                        player.sendMessage("§c你没有权限执行此命令!");
+                        return true;
+                    }
                     deletekit(player);
-                    saveInventoryAsync(player);
+                    saveinventory(player);
                     return true;
                 case "loadkit":
                     // 加载套件
+                    if (!player.hasPermission("bekit.loadkit")) {
+                        player.sendMessage("§c你没有权限执行此命令!");
+                        return true;
+                    }
                     loadkit(player);
                     return true;
                 case "loaddefaultkit":
                     // 加载默认套件
+                    if (!player.hasPermission("bekit.loadkit")) {
+                        player.sendMessage("§c你没有权限执行此命令!");
+                        return true;
+                    }
                     loaddefaultkit(player);
                     return true;
                 case "deletekit":
                     // 删除套件
+                    if (!player.hasPermission("bekit.deletekit")) {
+                        player.sendMessage("§c你没有权限执行此命令!");
+                        return true;
+                    }
                     deletekit(player);
                     return true;
                 case "about":
@@ -81,10 +106,10 @@ public final class main extends JavaPlugin {
         }
     }
     //异步保存插件
-    private void saveInventoryAsync(Player player) {
+    public void saveinventory(Player player) {
         Bukkit.getScheduler().runTaskAsynchronously(this, () -> {
             try {
-                saveInventory(player);
+                dosaveinventory(player);
                 player.sendMessage("§bBeKit§7>> §a套件保存成功!");
             } catch (Exception e) {
                 player.sendMessage("§bBeKit§7>> §c套件保存失败!");
@@ -92,8 +117,7 @@ public final class main extends JavaPlugin {
             }
         });
     }
-
-    private void saveInventory(Player player) {
+    public void dosaveinventory(Player player) {
         File dataFolder = getDataFolder();
         if (!dataFolder.exists()) {
             dataFolder.mkdirs();
@@ -104,7 +128,7 @@ public final class main extends JavaPlugin {
 
         //背包
         ItemStack[] inventory = player.getInventory().getContents();
-        for (int i = 0; i < inventory.length; i++) {
+        for (int i = 0; i < 36; i++) {
             if (inventory[i] != null) {
                 config.set("inventory." + i, inventory[i]);
             }
@@ -192,6 +216,7 @@ public final class main extends JavaPlugin {
             player.getInventory().setItemInOffHand(offhandItem);
         }
     }
+
     //删除套件
     public void deletekit(Player player) {
         File playerFile = new File(
@@ -227,10 +252,6 @@ public final class main extends JavaPlugin {
         }
     }
 
-    @Override
-    public void onDisable() {
-        getLogger().info("BeKit 已卸载! see u again!");
-    }
 }
 
 
