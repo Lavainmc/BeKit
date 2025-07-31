@@ -2,6 +2,7 @@ package me.lavainmc.bekit.listeners;
 
 import me.lavainmc.bekit.Main;
 
+import me.lavainmc.bekit.managers.ChestGuiManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,21 +21,24 @@ public class ChestClickListener implements Listener {
     public void onClick(InventoryClickEvent event) {
         if (!(event.getWhoClicked() instanceof Player)) return;
         Player player = (Player) event.getWhoClicked();
-
-        if (event.getView().getTitle().equals("套件编辑")) {
+        if (event.getView().getTitle().equals("套件编辑"))
+        {
             ItemStack clickedItem = event.getCurrentItem();
-
-            if (clickedItem != null) {
-                switch (clickedItem.getItemMeta().getDisplayName()) {
+            if (clickedItem != null)
+            {
+                switch (clickedItem.getItemMeta().getDisplayName())
+                {
                     case "§a保存当前套件":
                         player.closeInventory();
                         Bukkit.dispatchCommand(player, "bekit savekit");
                         event.setCancelled(true);
                         break;
                     case "§e加载默认套件":
-                        Bukkit.dispatchCommand(player, "bekit loaddefaultkit");
                         player.sendMessage("§bBeKit§7>> §a已加载默认套件");
                         event.setCancelled(true);
+                        player.closeInventory();
+                        Bukkit.dispatchCommand(player, "bekitedit");
+                        Bukkit.dispatchCommand(player, "bekit loaddefaultkit");
                         break;
                     case "§c删除已有套件":
                         Bukkit.dispatchCommand(player, "bekit deletekit");
