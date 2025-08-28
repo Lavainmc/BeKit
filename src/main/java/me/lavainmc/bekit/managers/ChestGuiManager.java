@@ -1,5 +1,6 @@
 package me.lavainmc.bekit.managers;
 
+import me.lavainmc.bekit.BeKit;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -14,28 +15,25 @@ import java.util.List;
 public class ChestGuiManager {
 
     private final JavaPlugin plugin;
-    private final Player player;
     private Inventory gui;
 
-    public ChestGuiManager(JavaPlugin plugin, Player player) {
+    public ChestGuiManager(BeKit plugin) {
         this.plugin = plugin;
-        this.player = player;
-        this.gui = Bukkit.createInventory(null, 27, "套件编辑");
     }
 
-    // 打开菜单
-    public void open() {
+    // 打开inv方法
+    public void open(Player player) {
         if (!plugin.getConfig().getBoolean("chest-menu", true)) {
+            player.sendMessage("§c套件编辑界面已禁用！");
             return;
         }
-        Bukkit.dispatchCommand(player, "bekit loadkit");
-        player.sendMessage("§bBeKit§7>> §f已自动加载已有套件, 请在界面中编辑套件!");
-        player.openInventory(gui);
+        this.gui = Bukkit.createInventory(null, 27, "套件编辑");
         setMenu();
+        player.openInventory(gui);
     }
 
 
-    private void setMenu() {
+    public void setMenu() {
         gui.clear();
         ItemStack saveItem = createMenuItem(
                 Material.WRITABLE_BOOK,
