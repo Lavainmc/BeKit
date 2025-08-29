@@ -7,7 +7,6 @@ import me.lavainmc.bekit.managers.ChestGuiManager;
 
 import me.lavainmc.bekit.managers.CommandManager;
 import me.lavainmc.bekit.managers.KitManager;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -15,13 +14,13 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
-import java.util.Objects;
 
 public final class BeKit extends JavaPlugin {
 
     private KitManager kitManager;
     private CommandManager commandManager;
     private ChestGuiManager chestGuiManager;
+    private WorldJoinListener worldchangelistener;
 
     @Override
     public void onEnable() {
@@ -39,10 +38,11 @@ public final class BeKit extends JavaPlugin {
         this.kitManager = new KitManager(this, kitManager);
         this.chestGuiManager = new ChestGuiManager(this);
         this.commandManager = new CommandManager(this, kitManager, chestGuiManager);
+        this.worldchangelistener = new WorldJoinListener(this, kitManager);
 
         // 监听器注册
-        getServer().getPluginManager().registerEvents(new ChestClickListener(this, chestGuiManager), this);
-        getServer().getPluginManager().registerEvents(new WorldJoinListener(this), this);
+        getServer().getPluginManager().registerEvents(new ChestClickListener(this, chestGuiManager, kitManager), this);
+        getServer().getPluginManager().registerEvents(new WorldJoinListener(this, kitManager), this);
 
         // 指令注册
         getCommand("bekit").setExecutor(commandManager);

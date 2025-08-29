@@ -2,6 +2,8 @@ package me.lavainmc.bekit.managers;
 
 import me.lavainmc.bekit.BeKit;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -49,10 +51,12 @@ public class CommandManager implements CommandExecutor {
                     player.sendMessage(Objects.requireNonNull(plugin.getConfig().getString
                             ("msg-no-permission")
                     ));
+                    player.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 1);
                     return true;
                 }
-                this.menu.open(player);
+                player.sendMessage("已自动给予套件，请在箱子界面中进行编辑!");
                 this.kit.loadKit(player);
+                this.menu.open(player);
                 return true;
             // 保存套件
             case "savekit":
@@ -60,25 +64,31 @@ public class CommandManager implements CommandExecutor {
                     player.sendMessage(Objects.requireNonNull(plugin.getConfig().getString
                             ("msg-no-permission")
                     ));
+                    player.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 1);
                     return true;
                 }
                 this.kit.saveKit(player);
+                player.playSound(player.getLocation(), Sound.BLOCK_SHULKER_BOX_CLOSE, 1, 1);
                 return true;
             // 加载套件
             case "loadkit":
                 if (!player.hasPermission("bekit.loadkit")) {
                     player.sendMessage(noPermissionMsg);
+                    player.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 1);
                     return true;
                 }
                 this.kit.loadKit(player);
+                player.playSound(player.getLocation(), Sound.ITEM_ARMOR_EQUIP_IRON, 1, 1);
                 return true;
             // 加载默认套件
             case "loaddefaultkit":
                 if (!player.hasPermission("bekit.loadkit")) {
                     player.sendMessage(noPermissionMsg);
+                    player.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 1);
                     return true;
                 }
                 this.kit.loadDefaultKit(player);
+                player.playSound(player.getLocation(), Sound.ITEM_ARMOR_EQUIP_IRON, 1, 1);
                 return true;
             // 加载指定套件
             case "loadnamedkit":
@@ -88,10 +98,12 @@ public class CommandManager implements CommandExecutor {
                 }
                 if (!player.hasPermission("bekit.loadnamedkit")) {
                     player.sendMessage(noPermissionMsg);
+                    player.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 1);
                     return true;
                 }
                 String loadName = args[1];
                 this.kit.loadNamedKit(player, loadName);
+                player.playSound(player.getLocation(), Sound.ITEM_ARMOR_EQUIP_IRON, 1, 1);
                 return true;
             // 从默认区域加载指定套件
             case "loadnameddefaultkit":
@@ -101,23 +113,28 @@ public class CommandManager implements CommandExecutor {
                 }
                 if (!player.hasPermission("bekit.loadnamedkit")) {
                     player.sendMessage(noPermissionMsg);
+                    player.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 1);
                     return true;
                 }
                 String loadDefaultName = args[1];
                 this.kit.loadNamedDefaultKit(player, loadDefaultName);
+                player.playSound(player.getLocation(), Sound.ITEM_ARMOR_EQUIP_IRON, 1, 1);
                 return true;
             // 删除套件
             case "deletekit":
                 if (!player.hasPermission("bekit.deletekit")) {
                     player.sendMessage(noPermissionMsg);
+                    player.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 1);
                     return true;
                 }
                 this.kit.deleteKit(player);
+                player.playSound(player.getLocation(), Sound.BLOCK_FIRE_EXTINGUISH, 1, 1);
                 return true;
             // 配置文件重载
             case "reload":
                 if (!player.hasPermission("bekit.reload")) {
                     player.sendMessage(noPermissionMsg);
+                    player.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 1);
                     return true;
                 }
                 this.plugin.reloadConfig(player);
@@ -129,6 +146,7 @@ public class CommandManager implements CommandExecutor {
                 return true;
             // 指令帮助
             case "help":
+                player.playSound(player.getLocation(), Sound.ITEM_BOOK_PAGE_TURN, 1, 1);
                 sender.sendMessage("§7--[ §bBeKit §f指令帮助§7 ]--");
                 sender.sendMessage("§f /bekit editkit §7打开套件编辑界面");
                 sender.sendMessage("§f /bekit savekit §7保存Kit");

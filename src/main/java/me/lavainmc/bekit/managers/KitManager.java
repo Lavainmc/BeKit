@@ -44,6 +44,8 @@ public class KitManager {
         }
 
         File playerFile = new File(dataFolder, "players/" + player.getName() + "/" + player.getWorld().getName() + ".yml");
+        // remove old kit
+        deleteKit(player);
         YamlConfiguration config = YamlConfiguration.loadConfiguration(playerFile);
 
         ItemStack[] inventory = player.getInventory().getContents();

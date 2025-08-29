@@ -1,7 +1,6 @@
 package me.lavainmc.bekit.listeners;
 
 import me.lavainmc.bekit.managers.KitManager;
-import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -11,10 +10,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class WorldJoinListener implements Listener {
 
-    private KitManager kit;
+    private final KitManager kit;
     private final JavaPlugin plugin;
-    public WorldJoinListener(JavaPlugin plugin) {
+
+    public WorldJoinListener(JavaPlugin plugin, KitManager kit) {
         this.plugin = plugin;
+        this.kit = kit;
     }
 
     @EventHandler
