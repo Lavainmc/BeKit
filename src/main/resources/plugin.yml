@@ -1,0 +1,30 @@
+name: BeKit
+version: 'alpha-0.5'
+main: me.lavainmc.bekit.BeKit
+api-version: '1.16'
+authors: [ Lavainmc ]
+description: 'A plugin can makes your kit editable'
+commands:
+  BeKit:
+    aliases: [bekit, bkit, bk]
+    usage: "§bBeKit§7>> §c未知命令! 尝试/bekit help查看指令"
+    description: "控制全部命令的使用权限"
+permissions:
+  bekit.menu:
+    description: 打开界面权限
+    default: true
+  bekit.savekit:
+    description: 保存套件权限
+    default: true
+  bekit.loadkit:
+    description: 加载套件权限
+    default: true
+  bekit.loadnamedkit:
+    description: 加载指定套件权限
+    default: false
+  bekit.deletekit:
+    description: 删除套件权限
+    default: true
+  bekit.reload:
+    description: 重载插件权限
+    default: false

@@ -1,0 +1,26 @@
+#BeKit
+#BEKIT    ——By Lavainmc (Lava不是岩浆)
+#bekit
+# 在进入下列世界时给予套装
+# auto give kit on join world
+givable-worlds:
+  - "example"
+
+# 是否启用箱子菜单
+# enable chest menu
+chest-menu: true
+
+# 消息设置
+# message setting
+msg-no-permission: "§bBeKit§7>> §c你没有权限执行此命令!"
+msg-save-success: "§bBeKit§7>> §a套件保存成功!"
+msg-save-fail: "§bBeKit§7>> §c套件保存失败!"
+msg-delete-success: "§bBeKit§7>> §a套件删除成功!"
+msg-delete-fail: "§bBeKit§7>> §c套件删除失败!"
+msg-load-fail: "§bBeKit§7>> §c加载套件失败, 已使用默认套件!"
+msg-load-default-fail: "§bBeKit§7>> §c加载默认套件失败! 请向管理员报告!"
+msg-load-named-fail: "§bBeKit§7>> §c加载指定的套件失败! 请检查配置或指令是否有误"
+
+#Do not change this!!!
+#不要修改这个!!!
+config-version: "1.1"
