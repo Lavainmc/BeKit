@@ -42,27 +42,23 @@ public class ChestClickListener implements Listener {
                         event.setCancelled(true);
                         player.playSound(player.getLocation(), Sound.BLOCK_SHULKER_BOX_CLOSE, 1, 1);
                         this.kit.saveKit(player);
-                        this.menu.setMenu();
+                        player.closeInventory();
                         break;
                     case "§e加载默认套件":
                         player.sendMessage("§bBeKit§7>> §a已加载默认套件");
                         event.setCancelled(true);
                         player.playSound(player.getLocation(), Sound.ITEM_ARMOR_EQUIP_IRON, 1, 1);
-                        this.kit.loadDefaultKit(player);
-                        /*
-                        旧版防dupe方法
                         player.closeInventory();
                         this.menu.open(player);
-                        */
-                        // 这是新的
-                        this.menu.setMenu();
+                        this.kit.loadDefaultKit(player);
                         break;
                     case "§c删除已有套件":
                         event.setCancelled(true);
-                        player.playSound(player.getLocation(), Sound.BLOCK_FIRE_EXTINGUISH, 1, 1);
                         this.kit.deleteKit(player);
+                        player.playSound(player.getLocation(), Sound.BLOCK_FIRE_EXTINGUISH, 1, 1);
+                        player.closeInventory();
+                        this.menu.open(player);
                         this.kit.loadDefaultKit(player);
-                        this.menu.setMenu();
                         break;
                     default:
                         break;
