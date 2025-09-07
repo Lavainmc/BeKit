@@ -25,9 +25,8 @@ public class WorldJoinListener implements Listener {
 
         // 检查世界是否在配置列表中
         if (plugin.getConfig().getStringList("givable-worlds").contains(newWorld.getName())) {
-            return;
+            kit.loadKit(player);
+            player.sendMessage("§bBeKit§7>> §f已自动加载套装");
         }
-        kit.loadKit(player);
-        player.sendMessage("§bBeKit§7>> §f已自动加载套装");
     }
 }
