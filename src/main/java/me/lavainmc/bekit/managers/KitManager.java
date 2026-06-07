@@ -76,7 +76,7 @@ public class KitManager {
     }
 
     // load
-    public void loadKit(Player player) {
+    public void loadWorldKit(Player player) {
         File playerFile = new File(plugin.getDataFolder(), "players/" + player.getName() + "/" + player.getWorld().getName() + ".yml");
         if (!playerFile.exists()) {
             loadDefaultKit(player);
@@ -88,6 +88,7 @@ public class KitManager {
 
         YamlConfiguration config = YamlConfiguration.loadConfiguration(playerFile);
 
+        // set inv
         ItemStack[] inventory = new ItemStack[36];
         for (int i = 0; i < 36; i++) {
             if (config.contains("inventory." + i)) {
@@ -107,6 +108,9 @@ public class KitManager {
             ItemStack offhandItem = config.getItemStack("offhand");
             player.getInventory().setItemInOffHand(offhandItem);
         }
+
+        //update inv
+        player.updateInventory();
     }
 
     // load default
@@ -121,7 +125,7 @@ public class KitManager {
 
         YamlConfiguration config = YamlConfiguration.loadConfiguration(playerFile);
 
-        // 背包
+        // set inv
         ItemStack[] inventory = new ItemStack[36];
         for (int i = 0; i < 36; i++) {
             if (config.contains("inventory." + i)) {
@@ -141,6 +145,9 @@ public class KitManager {
             ItemStack offhandItem = config.getItemStack("offhand");
             player.getInventory().setItemInOffHand(offhandItem);
         }
+
+        //update inv
+        player.updateInventory();
     }
 
     // load named kit
@@ -155,7 +162,7 @@ public class KitManager {
 
         YamlConfiguration config = YamlConfiguration.loadConfiguration(playerFile);
 
-        // 背包
+        // set inv
         ItemStack[] inventory = new ItemStack[36];
         for (int i = 0; i < 36; i++) {
             if (config.contains("inventory." + i)) {
@@ -175,9 +182,12 @@ public class KitManager {
             ItemStack offhandItem = config.getItemStack("offhand");
             player.getInventory().setItemInOffHand(offhandItem);
         }
+
+        //update inv
+        player.updateInventory();
     }
 
-    //load named kit in default area
+    //load named kit of default in world
     public void loadNamedDefaultKit(Player player, String loadDefaultName) {
         File playerFile = new File(plugin.getDataFolder(), "default_" + loadDefaultName + ".yml");
         if (!playerFile.exists()) {
@@ -189,7 +199,7 @@ public class KitManager {
 
         YamlConfiguration config = YamlConfiguration.loadConfiguration(playerFile);
 
-        // 背包
+        // set inv
         ItemStack[] inventory = new ItemStack[36];
         for (int i = 0; i < 36; i++) {
             if (config.contains("inventory." + i)) {
@@ -209,11 +219,13 @@ public class KitManager {
             ItemStack offhandItem = config.getItemStack("offhand");
             player.getInventory().setItemInOffHand(offhandItem);
         }
+
+        //update inv
+        player.updateInventory();
     }
 
 
-
-    // 删除套装
+    // delete kit
     public void deleteKit(Player player) {
         File playerFile = new File(
                 plugin.getDataFolder(), "players/" + player.getName() + "/" + player.getWorld().getName() + ".yml");
